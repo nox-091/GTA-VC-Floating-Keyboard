@@ -16,7 +16,7 @@ jobs:
 
       - name: Extract project
         run: |
-          unzip -q GTAVCFloatingKeyboard-fixed.zip
+          unzip -q GTAVCFloatingKeyboard-fixed-jvm17.zip
 
       - name: Set up Java
         uses: actions/setup-java@v5
