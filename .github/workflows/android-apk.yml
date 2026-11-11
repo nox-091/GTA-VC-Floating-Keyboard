@@ -16,7 +16,7 @@ jobs:
 
       - name: Extract project
         run: |
-          unzip -q GTAVCFloatingKeyboard-Phone-Build.zip
+          unzip -q GTAVCFloatingKeyboard.zip
 
       - name: Set up Java
         uses: actions/setup-java@v5
