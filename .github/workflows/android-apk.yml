@@ -14,6 +14,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Extract project
+        run: |
+          unzip -q GTAVCFloatingKeyboard-Phone-Build.zip
+
       - name: Set up Java
         uses: actions/setup-java@v5
         with:
@@ -22,7 +26,6 @@ jobs:
 
       - name: Find Android SDK Manager
         run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
           SDKMANAGER=$(find "$ANDROID_HOME/cmdline-tools" -name sdkmanager -type f | head -n 1)
           if [ -z "$SDKMANAGER" ]; then
             echo "sdkmanager was not found"
@@ -36,6 +39,11 @@ jobs:
           "$SDKMANAGER" --sdk_root="$ANDROID_HOME" \
             "platforms;android-35" \
             "build-tools;35.0.0"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
 
       - name: Build APK
         run: |
